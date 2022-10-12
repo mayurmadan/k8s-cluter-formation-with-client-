@@ -58,6 +58,13 @@ systemctl status docker
 #kubeadm join 172.31.26.24:6443 --token hpnfgz.52pq3e95hrsz68c6 --discovery-token-ca-cert-hash sha256:92f783e806fb2b0bd36c2847d276847e78a14e07f86256cdbb4f3d79b9618df8
 
 3. k8s-client:
+  apt-get update && apt-get install -y apt-transport-https
+  curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
+  sudo dd of=/etc/apt/sources.list.d/kubernetes.list<< EOF
+  deb http://apt.kubernetes.io/ kubernetes-xenial main
+  EOF
+  apt-get update && \
+  apt-get install -y kubectl
   $mkdir ~/.kube
   touch ~/.kube/config
   get the content from k8s master (cat ~/.kube/config) file and paste it in config file.
